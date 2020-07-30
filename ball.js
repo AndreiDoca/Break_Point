@@ -2,7 +2,7 @@
 import { canvas, ctx } from './canvas.js'
 import { paddleWidth, paddleX } from './paddle.js'
 import { brickRowCount, brickColumnCount, brickWidth, brickHeight, brickPadding, brickOffsetTop, brickOffsetLeft } from './bricks.js'
-import { score, lives } from './score.js'
+// import { score, lives } from './score.js'
 
 
 const ballRadius = 10;
@@ -115,7 +115,31 @@ export const collisionDetection = () => {
     }
 }
 
-function cnst() {
-    setScore();
-    setLives();
+
+
+
+
+
+
+
+
+export var score = 0
+
+
+
+export var lives = 3
+
+
+
+
+export const drawScore = () => {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: " + score, 8, 20);
+}
+
+export const drawLives = () => {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
 }

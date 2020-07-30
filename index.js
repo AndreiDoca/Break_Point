@@ -1,8 +1,8 @@
 import { clearCanvas } from './canvas.js'
-import { drawBall, updateBallPosition, drawBricks, collisionDetection } from './ball.js'
+import { drawBall, updateBallPosition, drawBricks, collisionDetection, drawScore, drawLives } from './ball.js'
 import { drawPaddle, updatePaddlePosition } from './paddle.js'
 // import { } from './bricks.js';
-import { drawLives, drawScore } from './score.js'
+// import { drawLives, drawScore } from './score.js'
 
 
 
