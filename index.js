@@ -1,7 +1,7 @@
 import { clearCanvas } from './canvas.js'
 import { drawBall, updateBallPosition } from './ball.js'
 import { drawPaddle, updatePaddlePosition } from './paddle.js'
-import { drawBricks, breakBricks } from './bricks.js';
+import { drawBricks, collisionDetection } from './bricks.js';
 import { drawLives, drawScore } from './score.js'
 
 
@@ -12,11 +12,10 @@ function draw() {
     drawBall();
     drawPaddle();
     drawBricks();
-    breakBricks();
     drawScore();
     drawLives();
 
-
+    collisionDetection();
     updateBallPosition();
     updatePaddlePosition();
 }

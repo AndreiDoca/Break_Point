@@ -1,13 +1,15 @@
 
 import { canvas, ctx } from './canvas.js'
 import { paddleWidth, paddleX } from './paddle.js'
+import { lives } from './score.js'
+
 
 const ballRadius = 10;
 export var x = canvas.width / 2;
 export var y = canvas.height - 30;
 export var dx = 2;
 export var dy = -2;
-export var lives = 3;
+
 
 export const drawBall = () => {
     ctx.beginPath();

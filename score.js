@@ -1,8 +1,8 @@
 
 import { ctx, canvas } from './canvas.js';
 
-var score = 0
-var lives = 3
+export var score = 0
+export var lives = 3
 
 export const drawScore = () => {
     ctx.font = '16px Arial'
