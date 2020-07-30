@@ -1,14 +1,17 @@
 
 import { canvas, ctx } from './canvas.js'
 import { paddleWidth, paddleX } from './paddle.js'
-import { lives } from './score.js'
+import { brickRowCount, brickColumnCount, brickWidth, brickHeight, brickPadding, brickOffsetTop, brickOffsetLeft } from './bricks.js'
+import { score, lives } from './score.js'
 
 
 const ballRadius = 10;
-export var x = canvas.width / 2;
-export var y = canvas.height - 30;
-export var dx = 2;
+var x = canvas.width / 2;
+var y = canvas.height - 30;
+var dx = 2;
 export var dy = -2;
+
+
 
 
 export const drawBall = () => {
@@ -49,4 +52,70 @@ export const updateBallPosition = () => {
 
     x += dx;
     y += dy;
+}
+
+
+
+
+
+
+
+
+
+// Create an array to draw the bricks
+
+var bricks = [];
+for (var c = 0; c < brickColumnCount; c++) {
+    bricks[c] = [];
+    for (var r = 0; r < brickRowCount; r++) {
+        bricks[c][r] = { x: 0, y: 0, status: 1 };
+    }
+}
+
+// drawing the bricks
+
+export const drawBricks = () => {
+    for (var c = 0; c < brickColumnCount; c++) {
+        for (var r = 0; r < brickRowCount; r++) {
+            if (bricks[c][r].status == 1) {
+                var brickX = (r * (brickWidth + brickPadding)) + brickOffsetLeft;
+                var brickY = (c * (brickHeight + brickPadding)) + brickOffsetTop;
+                bricks[c][r].x = brickX;
+                bricks[c][r].y = brickY;
+                ctx.beginPath();
+                ctx.rect(brickX, brickY, brickWidth, brickHeight);
+                ctx.fillStyle = "#0095DD";
+                ctx.fill();
+                ctx.closePath();
+            }
+        }
+    }
+}
+
+
+// Lets break some brick
+
+
+export const collisionDetection = () => {
+    for (var c = 0; c < brickColumnCount; c++) {
+        for (var r = 0; r < brickRowCount; r++) {
+            var b = bricks[c][r];
+            if (b.status == 1) {
+                if (x > b.x && x < b.x + brickWidth && y > b.y && y < b.y + brickHeight) {
+                    dy = -dy;
+                    b.status = 0;
+                    score++;
+                    if (score == brickRowCount * brickColumnCount) {
+                        alert("YOU WIN, CONGRATS!");
+                        document.location.reload();
+                    }
+                }
+            }
+        }
+    }
+}
+
+function cnst() {
+    setScore();
+    setLives();
 }
